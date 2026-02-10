@@ -553,4 +553,4 @@ Every rule was earned. Every clause was written in response to a real failure. R
 
 ---
 
-*Governed by the [Axis Praxis Constitution](https://axispraxis.com). Every rule was earned.*
+*Governed by the [Axis Praxis Constitution](https://www.axispraxis.ai). Every rule was earned.*
