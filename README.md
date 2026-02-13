@@ -28,7 +28,7 @@ One human stays in charge.
 | IV | Build and Deploy Discipline — commit verification, deploy monitoring |
 | V | Testing and Quality Assurance — human-is-not-QA principle |
 | VI | Critical Path Protection — registries, compound change review |
-| VII | Diagnosis and Investigation — evidence-first doctrine, three strikes rule |
+| VII | Diagnosis and Investigation — evidence-first doctrine, three strikes rule, Shainin's Red X |
 | VIII | Database and Migration Governance — read-write separation |
 | IX | Tools and Automation — skills are mandatory |
 | X | Known AI Failure Modes — documented production incidents |

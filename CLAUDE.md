@@ -427,6 +427,26 @@ The Human Principal does not perform browser console debugging. The Human Princi
 4. Platform dashboards and monitoring tools
 5. **LAST RESORT ONLY:** Request Human Principal's browser output
 
+### §7.6 — Shainin's Red X: Reproduce Before You Read
+
+> *"Code tells you what SHOULD happen. Simulation tells you what ACTUALLY happened. Never substitute one for the other."*
+
+When a defect produces different behavior under two conditions — same inputs, different execution paths — the Coding Agent shall NOT read code first. The diagnostic protocol is:
+
+1. **Simulate the failing path.** Capture the actual request, parameters, response, and result. This is **Observation A.**
+2. **Simulate the working path.** Same inputs, same account, same conditions. Capture the same data points. This is **Observation B.**
+3. **Diff A versus B.** The difference between the two captures IS the defect. Document the diff before proposing any fix.
+4. **Only THEN read code** — to understand WHY the diff exists and where to apply the correction.
+
+**What this prevents:**
+- Reading code, forming plausible theories, and burning context windows on speculation
+- Confirmation bias (§10.2) — finding one plausible explanation in code and declaring it the root cause
+- Investigating systems that are working correctly because the code *"looks like"* it might be wrong
+
+**Named for:** Dorian Shainin, the quality engineer who taught that the dominant cause of a defect — the "Red X" — reveals itself through comparative experimentation, not through reading blueprints.
+
+**Trigger:** Any defect where the same inputs produce different results depending on the execution path. If the defect can be described as *"X works but Y doesn't, and both use the same data"* — this is a Red X situation. Simulate both paths, diff them, fix what's different.
+
 ---
 
 ## ARTICLE VIII — DATABASE AND MIGRATION GOVERNANCE
@@ -539,7 +559,7 @@ Every rule was earned. Every clause was written in response to a real failure. R
 
 | Date | Amendment | Origin |
 |------|-----------|--------|
-| | *To be recorded as amendments are ratified* | |
+| 2026-02-13 | §7.6 Shainin's Red X — Reproduce Before You Read. Simulate failing path, simulate working path, diff the two. No code reading until you have Observation A and Observation B. | Coding Agent burned entire context window theorizing about a defect without reproducing the failure once. Comparative simulation revealed the answer in minutes. |
 
 ---
 
