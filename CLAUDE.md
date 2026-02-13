@@ -477,6 +477,10 @@ When a documented skill, script, or automation exists for a task, the AI agent s
 
 At the beginning of every session, the Coding Agent shall execute the checklist at the top of this file.
 
+### §9.3 — Agent Communication Polling
+
+When agents communicate through asynchronous channels — files, queues, shared state, or any non-real-time medium — the receiving agent shall poll for new directives after every checkpoint where it is awaiting a response. The Human Principal shall not serve as a message relay between agents. If an agent is blocked awaiting guidance, checking for that guidance is the agent's responsibility.
+
 ---
 
 ## ARTICLE X — KNOWN AI FAILURE MODES
@@ -560,6 +564,7 @@ Every rule was earned. Every clause was written in response to a real failure. R
 | Date | Amendment | Origin |
 |------|-----------|--------|
 | 2026-02-13 | §7.6 Shainin's Red X — Reproduce Before You Read. Simulate failing path, simulate working path, diff the two. No code reading until you have Observation A and Observation B. | Coding Agent burned entire context window theorizing about a defect without reproducing the failure once. Comparative simulation revealed the answer in minutes. |
+| 2026-02-14 | §9.3 Agent Communication Polling — Receiving agent polls for directives after every checkpoint awaiting a response. Human Principal is not a message relay. | CEO had to manually relay bridge approvals to Coding Agent multiple times across sessions. |
 
 ---
 

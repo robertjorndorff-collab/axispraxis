@@ -30,7 +30,7 @@ One human stays in charge.
 | VI | Critical Path Protection — registries, compound change review |
 | VII | Diagnosis and Investigation — evidence-first doctrine, three strikes rule, Shainin's Red X |
 | VIII | Database and Migration Governance — read-write separation |
-| IX | Tools and Automation — skills are mandatory |
+| IX | Tools and Automation — skills are mandatory, agent communication polling |
 | X | Known AI Failure Modes — documented production incidents |
 | XI | Prohibited Actions — the 14 nevers |
 | XII | Amendment Process — grows only through failure |
