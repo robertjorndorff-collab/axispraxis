@@ -53,7 +53,7 @@ One human stays in charge.
 
 ### Option 3: Use the Setup Wizard
 
-If you have a Claude account, the [AXIS PRAXIS Setup Wizard](https://www.axispraxis.ai) interviews you about your stack, repo, and AI tools, then generates a complete `CLAUDE.md` tailored to your project.
+If you have a Claude account, the [AXIS PRAXIS Setup Wizard](https://claude.ai/share/e4ac36fe-e841-4c48-95f5-4375ff0c0dee) interviews you about your stack, repo, and AI tools, then generates a complete `CLAUDE.md` tailored to your project.
 
 ## How It Works
 
