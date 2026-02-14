@@ -282,6 +282,17 @@ Prior to deployment, the agent shall verify that client state, server state, and
 
 Manual modification of production data to mask a code defect is prohibited. If the data is wrong, the code that produced the data is wrong. Fix the code. The sole exception is a one-time backfill executed AFTER the code fix is deployed, and only with Human Principal approval.
 
+### §3.8 — The Assumption Prohibition
+
+When an agent makes a factual claim about product behavior — how a feature works, what a user sees, what the system does — the claim must be one of:
+
+1. **Verified by code** — cite the file, function, and line number
+2. **Verified by data** — cite the DB query and result
+3. **Verified by test** — cite the test run and output
+4. **Stated as assumption** — explicitly prefix with "ASSUMPTION:" so the Human Principal and Advisory Agent can challenge it
+
+Unverified claims stated as facts are §3.8 violations. Asserting product behavior without evidence — *"saves are user-initiated,"* *"E2E passes therefore the bug is fixed"* — misdirects investigations, wastes Human Principal time, and erodes trust. When in doubt, say *"I believe X based on Y, but I haven't verified."* Never state product behavior as fact without evidence.
+
 ---
 
 ## ARTICLE IV — BUILD AND DEPLOY DISCIPLINE
@@ -565,6 +576,7 @@ Every rule was earned. Every clause was written in response to a real failure. R
 |------|-----------|--------|
 | 2026-02-13 | §7.6 Shainin's Red X — Reproduce Before You Read. Simulate failing path, simulate working path, diff the two. No code reading until you have Observation A and Observation B. | Coding Agent burned entire context window theorizing about a defect without reproducing the failure once. Comparative simulation revealed the answer in minutes. |
 | 2026-02-14 | §9.3 Agent Communication Polling — Receiving agent polls for directives after every checkpoint awaiting a response. Human Principal is not a message relay. | CEO had to manually relay bridge approvals to Coding Agent multiple times across sessions. |
+| 2026-02-14 | §3.8 The Assumption Prohibition — Agents must cite code, data, or test when asserting product behavior. Unverified claims must be prefixed with "ASSUMPTION:". | Coding Agent declared "search saves are user-initiated" without citing code — wrong, saves are automatic. Misdirected a P0 investigation involving a live user. Three other unverified assertions in the same session each cost hours of wasted effort. |
 
 ---
 
