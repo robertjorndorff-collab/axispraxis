@@ -219,7 +219,7 @@
       color: #999;
       margin-top: 20px;
       letter-spacing: 0.08em;
-    ">VERSION 1.3 · RATIFIED FEBRUARY 10, 2026 · AMENDED FEBRUARY 16, 2026</p>
+    ">VERSION 2.0 · RATIFIED FEBRUARY 10, 2026 · AMENDED APRIL 10, 2026</p>
   </div>
 
   <div class="ap-blockquote">
@@ -663,7 +663,9 @@
     🚫 NEVER commit unapproved changes due to context exhaustion<br>
     🚫 NEVER skip re-reading this Constitution after session compaction<br>
     🚫 NEVER continue working after compaction without re-reading the active ticket and relevant skills<br>
-    🚫 NEVER execute write operations against production data stores — only the Human Principal touches production data directly (§14.5)
+    🚫 NEVER execute write operations against production data stores — only the Human Principal touches production data directly (§14.5)<br>
+    🚫 NEVER paste secret values into tickets, documentation, or comments — reference by name only (§16.1)<br>
+    🚫 NEVER commit without a pre-commit secret scan passing (§16.2)
   </div>
 
   <hr class="ap-divider">
@@ -822,8 +824,41 @@
 
   <hr class="ap-divider">
 
-  <!-- ARTICLE XV -->
-  <h2 style="font-size: 26px; margin: 40px 0 24px; text-transform: uppercase; letter-spacing: 0.06em;">Article XV — Purpose and Jurisdiction</h2>
+  <!-- ARTICLE XVI -->
+  <h2 style="font-size: 26px; margin: 40px 0 24px; text-transform: uppercase; letter-spacing: 0.06em;">Article XVI — Secrets Hygiene</h2>
+
+  <div class="ap-blockquote">
+    "The .env was properly gitignored. The leak came from a markdown ticket. Git history is a public surface area you cannot see."
+  </div>
+
+  <h3 style="font-size: 19px; margin: 32px 0 12px;"><span class="ap-section-num">§16.1</span> — No Secrets in Prose</h3>
+  <p>Credentials, tokens, API keys, signing secrets, and connection strings shall <strong style="color: #111;">never</strong> appear in tickets, session closeouts, READMEs, comments, commit messages, or any file other than the designated secrets store (typically <code>.env</code>). Reference secrets by name — <code>SLACK_BOT_TOKEN</code>, <code>DATABASE_URL</code> — never by value. If a document needs to describe a credential, use a placeholder: <code>xoxb-...</code>, <code>sk-...</code>, <code>redis://localhost:6379</code>.</p>
+  <p>This rule applies to <strong style="color: #111;">all files</strong>, not just source code. The most dangerous leaks occur in documentation, not in <code>.ts</code> or <code>.py</code> files — because documentation is written casually, reviewed loosely, and committed without the same scrutiny as code.</p>
+
+  <h3 style="font-size: 19px; margin: 32px 0 12px;"><span class="ap-section-num">§16.2</span> — Pre-Commit Secret Scanning</h3>
+  <p>All repositories under this Constitution shall run an automated secret detection hook — <code>gitleaks</code>, <code>detect-secrets</code>, or equivalent — on every commit. The hook shall block the commit if a pattern matches a known secret format. No agent may bypass the hook via <code>--no-verify</code> or equivalent flags. If the hook produces a false positive, the pattern shall be added to an allowlist — the hook shall not be disabled.</p>
+
+  <h3 style="font-size: 19px; margin: 32px 0 12px;"><span class="ap-section-num">§16.3</span> — Git History as Public Surface Area</h3>
+  <p>Deleting a file does not delete it from git history. Every commit ever pushed to a remote is accessible to anyone who clones the repository — including commits that were later amended, rebased, or removed from the main branch. Treat every commit as <strong style="color: #111;">permanent and public</strong>, even in private repositories. A repository that is private today may become public tomorrow.</p>
+
+  <h3 style="font-size: 19px; margin: 32px 0 12px;"><span class="ap-section-num">§16.4</span> — Incident Response Protocol</h3>
+  <p>If a secret is committed to a repository — whether discovered by automated scanning, a third-party notification, or manual review — the following steps shall be executed immediately and in order:</p>
+  <ol>
+    <li><strong style="color: #111;">Rotate the credential.</strong> Assume it is compromised regardless of exposure window. Revoke the old value and generate a new one at the source (provider dashboard, secrets manager, etc.).</li>
+    <li><strong style="color: #111;">Scrub git history.</strong> Use <code>git filter-repo</code>, BFG Repo-Cleaner, or equivalent to remove the secret from all reachable commits, then expire the reflog and garbage-collect.</li>
+    <li><strong style="color: #111;">Verify zero reachable objects.</strong> After scrubbing, confirm via <code>git log --all -p | grep</code> that no commit in the repository contains the secret value.</li>
+    <li><strong style="color: #111;">Force-push clean history.</strong> Replace the remote branch with the scrubbed history.</li>
+    <li><strong style="color: #111;">Update the local secrets store</strong> (<code>.env</code>) with the new credential values.</li>
+    <li><strong style="color: #111;">Verify connectivity.</strong> Confirm the application connects and operates with the new credentials.</li>
+  </ol>
+  <p>Speed matters. The window between exposure and rotation is the window of vulnerability. Every hour a leaked credential remains active is an hour it can be exploited.</p>
+
+  <p style="margin-top: 32px; font-style: italic; color: #666;"><strong style="color: #111;">Origin:</strong> This article was written after Slack's automated scanner detected a bot token committed inside a markdown ticket file. The <code>.env</code> was properly gitignored. The secret redaction layer in the application code was working. The leak came from documentation — a place no one was watching. The credential was live on a public repository for approximately two hours before detection and rotation. No exploitation occurred. The lesson: secrets escape through prose, not just code.</p>
+
+  <hr class="ap-divider">
+
+  <!-- ARTICLE XVII -->
+  <h2 style="font-size: 26px; margin: 40px 0 24px; text-transform: uppercase; letter-spacing: 0.06em;">Article XVII — Purpose and Jurisdiction</h2>
 
   <p>This Constitution exists for AI agents — not for the public, not for marketing, not for decoration. When any agent drifts from protocol, the answer is: <strong style="color: #111;">read the Constitution.</strong></p>
 
